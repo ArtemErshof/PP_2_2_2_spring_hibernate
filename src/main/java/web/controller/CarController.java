@@ -13,9 +13,9 @@ import java.util.List;
 @Controller
 public class CarController {
     @GetMapping(value = "/cars")
-    public String printCarsTable(@RequestParam(value = "count", required = false) String count, Model model) {
+    public String printCarsTable(@RequestParam(value = "count", required = false) Integer count, Model model) {
         CarService carService = new CarServiceImp();
-        List<Car> carList = count == null ? carService.getCars(5) : carService.getCars(Integer.parseInt(count));
+        List<Car> carList = count == null ? carService.getCars(5) : carService.getCars(count);
         model.addAttribute("massage", "Table from" + " " + carList.size() + " " + "cars");
         model.addAttribute("cars", carList);
         return "cars";
